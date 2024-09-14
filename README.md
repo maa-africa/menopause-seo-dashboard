@@ -1,35 +1,10 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # menopause-seo-dashboard
 The Menopause SEO Dashboard is a tool designed to help users track menopause-related keywords, visualize ranking data, and receive alerts. Built using Ruby on Rails, Bootstrap, and integrated with the SERP API.
-=======
-=======
->>>>>>> staging
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-<<<<<<< HEAD
->>>>>>> e32b494 (added staging branch)
-=======
->>>>>>> staging
+## Workflow Summary:
+Code in the staging branch.
+Push changes to GitHub: git push origin staging.
+Switch to main branch: git checkout main.
+Merge or rebase staging into main.
+Push the updated main branch to GitHub: git push origin main.
+Deploy the main branch to production.
