@@ -1,7 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # menopause-seo-dashboard
 The Menopause SEO Dashboard is a tool designed to help users track menopause-related keywords, visualize ranking data, and receive alerts. Built using Ruby on Rails, Bootstrap, and integrated with the SERP API.
 =======
+=======
+>>>>>>> staging
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -26,4 +29,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+<<<<<<< HEAD
 >>>>>>> e32b494 (added staging branch)
+=======
+>>>>>>> staging
