@@ -1,5 +1,5 @@
 class KeywordsController < ApplicationController
-  before_action :set_keyword, only: %i[ show edit update destroy ]
+  before_action :set_keyword, only: [:show, :edit, :update, :destroy, :fetch_serp]
 
   # GET /keywords or /keywords.json
   def index
@@ -8,6 +8,7 @@ class KeywordsController < ApplicationController
 
   # GET /keywords/1 or /keywords/1.json
   def show
+    @serp_results = @keyword.fetch_serp_results
   end
 
   # GET /keywords/new
@@ -26,7 +27,7 @@ class KeywordsController < ApplicationController
     respond_to do |format|
       if @keyword.save
         format.html { redirect_to keyword_url(@keyword), notice: "Keyword was successfully created." }
-        format.json { render :show, status: :created, location: @keyword }
+        format.json { render :show, status: :created }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @keyword.errors, status: :unprocessable_entity }
@@ -39,7 +40,7 @@ class KeywordsController < ApplicationController
     respond_to do |format|
       if @keyword.update(keyword_params)
         format.html { redirect_to keyword_url(@keyword), notice: "Keyword was successfully updated." }
-        format.json { render :show, status: :ok, location: @keyword }
+        format.json { render :show, status: :ok }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @keyword.errors, status: :unprocessable_entity }
@@ -57,7 +58,14 @@ class KeywordsController < ApplicationController
     end
   end
 
+  # Use the google_search_results gem to get SERP data
+  def fetch_serp
+    @serp_results = @keyword.fetch_serp_results
+    # Do something with @serp_results if needed
+  end
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_keyword
       @keyword = Keyword.find(params[:id])
