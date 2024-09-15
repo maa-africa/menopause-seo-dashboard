@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "dashboard", to: "dashboard#index"
   get "settings", to: "settings#index"
   get "users/profile"
   devise_for :users
