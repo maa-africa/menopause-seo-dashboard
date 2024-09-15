@@ -2,9 +2,10 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: nashthedev        # replace with your PostgreSQL username
-  password: dip6devX    # replace with your PostgreSQL password
-  host: localhost                     # or the host where PostgreSQL is running
+  username: nashthedev # replace with your PostgreSQL username
+  password: dip6devX # replace with your PostgreSQL password
+  host: localhost
+  port: 5432 # or the host where PostgreSQL is running
 
 development:
   <<: *default
@@ -17,9 +18,9 @@ test:
 production:
   <<: *default
   database: seo-dashboard_production
-  username: nashthedev      # set for production if different
+  username: nashthedev # set for production if different
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  host: your_production_host          # if your production DB is hosted elsewhere
+  host: your_production_host # if your production DB is hosted elsewhere
 
 # # SQLite. Versions 3.8.0 and up are supported.
 # #   gem install sqlite3
@@ -42,7 +43,6 @@ production:
 # test:
 #   <<: *default
 #   database: storage/test.sqlite3
-
 
 # # SQLite3 write its data on the local filesystem, as such it requires
 # # persistent disks. If you are deploying to a managed service, you should
