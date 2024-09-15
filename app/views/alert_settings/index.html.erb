@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Alert settings" %>
+
+<h1>Alert settings</h1>
+
+<div id="alert_settings">
+  <% @alert_settings.each do |alert_setting| %>
+    <%= render alert_setting %>
+    <p>
+      <%= link_to "Show this alert setting", alert_setting %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New alert setting", new_alert_setting_path %>

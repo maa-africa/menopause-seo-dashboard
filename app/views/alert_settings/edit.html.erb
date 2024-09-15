@@ -1,0 +1,12 @@
+<% content_for :title, "Editing alert setting" %>
+
+<h1>Editing alert setting</h1>
+
+<%= render "form", alert_setting: @alert_setting %>
+
+<br>
+
+<div>
+  <%= link_to "Show this alert setting", @alert_setting %> |
+  <%= link_to "Back to alert settings", alert_settings_path %>
+</div>

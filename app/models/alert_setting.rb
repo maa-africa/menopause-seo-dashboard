@@ -1,0 +1,2 @@
+class AlertSetting < ApplicationRecord
+end

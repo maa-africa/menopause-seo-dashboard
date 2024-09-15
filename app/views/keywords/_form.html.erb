@@ -1,0 +1,34 @@
+<%= form_with(model: keyword) do |form| %>
+  <% if keyword.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(keyword.errors.count, "error") %> prohibited this keyword from being saved:</h2>
+
+      <ul>
+        <% keyword.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+      
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :target_url, style: "display: block" %>
+    <%= form.text_field :target_url %>
+  </div>
+
+  <div>
+    <%= form.label :search_engine, style: "display: block" %>
+    <%= form.select :search_engine, options_for_select([["Google", "google"], ["Bing", "bing"], ["Yahoo", "yahoo"]]), prompt: "Select Search Engine" %>
+  </div>
+  
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

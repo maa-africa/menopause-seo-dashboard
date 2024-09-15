@@ -1,0 +1,23 @@
+<h1>Keyword: <%= @keyword.name %></h1>
+<h2>Search Engine Results</h2>
+
+<% if @serp_results.present? %>
+  <ul>
+    <% @serp_results.each do |result| %>
+      <li>
+        <strong><%= result[:title] %></strong><br />
+        <%= link_to result[:link], result[:link], target: '_blank' %><br />
+        <p><%= result[:snippet] %></p>
+        <p>Rank: <%= result[:rank] %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No results found.</p>
+<% end %>
+
+<div>
+  <%= link_to "Edit this keyword", edit_keyword_path(@keyword) %> |
+  <%= link_to "Back to keywords", keywords_path %> |
+  <%= button_to "Destroy this keyword", @keyword, method: :delete, data: { confirm: "Are you sure?" } %>
+</div>

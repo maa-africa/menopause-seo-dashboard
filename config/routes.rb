@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :keywords
+  resources :alert_settings
   get "dashboard", to: "dashboard#index"
   get "settings", to: "settings#index"
   get "users/profile"

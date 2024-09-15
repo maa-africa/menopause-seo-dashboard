@@ -1,0 +1,11 @@
+<% content_for :title, "Keywords" %>
+
+<h1>Keywords</h1>
+
+<div id="keywords">
+  <% @keywords.each do |keyword| %> <%= render keyword %>
+  <p><%= link_to "Show this keyword", keyword %></p>
+  <% end %>
+</div>
+
+<%= link_to "New keyword", new_keyword_path %>
