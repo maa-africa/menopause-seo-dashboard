@@ -1,5 +1,5 @@
 class KeywordsController < ApplicationController
-  before_action :set_keyword, only: [:show, :edit, :update, :destroy, :fetch_serp]
+  before_action :set_keyword, only: [ :show, :edit, :update, :destroy, :fetch_serp ]
 
   # GET /keywords or /keywords.json
   def index

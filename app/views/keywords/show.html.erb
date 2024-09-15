@@ -1,14 +1,14 @@
-<%= render @keyword %>
-
 <h1>Keyword: <%= @keyword.name %></h1>
 <h2>Search Engine Results</h2>
-<% if @serp_results && @serp_results['organic_results'] %>
+
+<% if @serp_results.present? %>
   <ul>
-    <% @serp_results['organic_results'].each do |result| %>
+    <% @serp_results.each do |result| %>
       <li>
-        <strong><%= result['title'] %></strong><br />
-        <%= link_to result['link'], result['link'], target: '_blank' %><br />
-        <p><%= result['snippet'] %></p>
+        <strong><%= result[:title] %></strong><br />
+        <%= link_to result[:link], result[:link], target: '_blank' %><br />
+        <p><%= result[:snippet] %></p>
+        <p>Rank: <%= result[:rank] %></p>
       </li>
     <% end %>
   </ul>
