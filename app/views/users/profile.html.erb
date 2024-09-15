@@ -1,2 +1,4 @@
-<h1>Users#profile</h1>
-<p>Find me in app/views/users/profile.html.erb</p>
+<h1>User Profile</h1>
+<p>Welcome, <%= current_user.name %>!</p>
+
+<%= link_to 'Account Settings', settings_path, class: 'btn btn-primary' %>
