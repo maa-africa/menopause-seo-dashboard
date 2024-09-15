@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :alert_settings
   resources :keywords
   get "dashboard", to: "dashboard#index"
   get "settings", to: "settings#index"

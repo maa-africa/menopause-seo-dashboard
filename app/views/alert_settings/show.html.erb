@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @alert_setting %>
+
+<div>
+  <%= link_to "Edit this alert setting", edit_alert_setting_path(@alert_setting) %> |
+  <%= link_to "Back to alert settings", alert_settings_path %>
+
+  <%= button_to "Destroy this alert setting", @alert_setting, method: :delete %>
+</div>

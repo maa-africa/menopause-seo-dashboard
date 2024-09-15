@@ -1,0 +1,32 @@
+<%= form_with(model: alert_setting) do |form| %>
+  <% if alert_setting.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(alert_setting.errors.count, "error") %> prohibited this alert_setting from being saved:</h2>
+
+      <ul>
+        <% alert_setting.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :keyword_id, style: "display: block" %>
+    <%= form.number_field :keyword_id %>
+  </div>
+
+  <div>
+    <%= form.label :threshold, style: "display: block" %>
+    <%= form.number_field :threshold %>
+  </div>
+
+  <div>
+    <%= form.label :notification_method, style: "display: block" %>
+    <%= form.text_field :notification_method %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

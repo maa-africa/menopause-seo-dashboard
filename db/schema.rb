@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_15_143751) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_15_144140) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "alert_settings", force: :cascade do |t|
+    t.integer "keyword_id"
+    t.integer "threshold"
+    t.string "notification_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "keywords", force: :cascade do |t|
     t.string "name"
