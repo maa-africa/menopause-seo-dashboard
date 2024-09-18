@@ -321,7 +321,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   dotenv-rails
-  google_search_results
+  google_search_results (~> 2.0)
   importmap-rails
   jbuilder
   pg (~> 1.2)
