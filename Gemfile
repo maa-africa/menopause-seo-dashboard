@@ -33,7 +33,8 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "devise", "~> 4.9"
 gem "google_search_results", "~> 2.0"
 gem "dotenv-rails"
-
+gem "bootstrap", "~> 5.3", ">= 5.3.3"
+gem "dartsass-sprockets"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false

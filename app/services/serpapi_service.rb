@@ -1,11 +1,12 @@
 # app/services/serpapi_service.rb
 class SerpapiService
   def initialize
-    @client = SerpApiSearch.new(ENV["SERPAPI_API_KEY"]) # Ensure the API key is set up
+    @client = GoogleSearchResults.new(api_key: ENV["SERPAPI_API_KEY"]) # Make sure the API key is correct
   end
 
   def search_keyword_ranking(keyword)
     Rails.logger.debug("Searching SERP for keyword: #{keyword}")
+    
     begin
       response = @client.get_json({
         q: keyword,
@@ -16,15 +17,10 @@ class SerpapiService
 
       Rails.logger.debug("SERP API response: #{response.inspect}")
 
-      if response.nil?
-        Rails.logger.error("SerpApiSearch response is nil for keyword: #{keyword}")
-        return []
-      end
-
-      parse_results(response)
+      return parse_results(response)
     rescue StandardError => e
       Rails.logger.error("Error fetching SERP data: #{e.message}")
-      []
+      return []
     end
   end
 

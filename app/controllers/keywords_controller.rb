@@ -1,5 +1,5 @@
 class KeywordsController < ApplicationController
-  before_action :set_keyword, only: [:show, :edit, :update, :destroy, :fetch_serp]
+  before_action :set_keyword, only: [:show, :edit, :update, :destroy]
 
   # GET /keywords or /keywords.json
   def index
@@ -8,13 +8,7 @@ class KeywordsController < ApplicationController
 
   # GET /keywords/1 or /keywords/1.json
   def show
-    begin
-      @serp_results = SerpapiService.new.search_keyword_ranking(@keyword.name)
-    rescue StandardError => e
-      Rails.logger.error("Error fetching SERP data for keyword '#{@keyword.name}': #{e.message}")
-      @serp_results = []
-      flash[:alert] = "An error occurred while fetching SERP data."
-    end
+    # Only keyword details are shown here, without fetching SERP results
   end
 
   # GET /keywords/new
@@ -63,21 +57,6 @@ class KeywordsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  # Use the SerpapiService to fetch SERP data
-  def fetch_serp
-    service = SerpapiService.new
-    @serp_results = service.search_keyword_ranking(@keyword.name)
-  
-    if @serp_results.empty?
-      flash[:alert] = "No SERP data found for keyword: #{@keyword.name}."
-    end
-  rescue StandardError => e
-    Rails.logger.error("Error fetching SERP data: #{e.message}")
-    flash[:alert] = "An error occurred while fetching SERP data: #{e.message}"
-    @serp_results = []
-  end
-  
 
   private
 
