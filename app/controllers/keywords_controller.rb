@@ -1,5 +1,5 @@
 class KeywordsController < ApplicationController
-  before_action :set_keyword, only: [ :show, :edit, :update, :destroy, :fetch_serp ]
+  before_action :set_keyword, only: [:show, :edit, :update, :destroy]
 
   # GET /keywords or /keywords.json
   def index
@@ -8,7 +8,7 @@ class KeywordsController < ApplicationController
 
   # GET /keywords/1 or /keywords/1.json
   def show
-    @serp_results = @keyword.fetch_serp_results
+    # Only keyword details are shown here, without fetching SERP results
   end
 
   # GET /keywords/new
@@ -26,7 +26,7 @@ class KeywordsController < ApplicationController
 
     respond_to do |format|
       if @keyword.save
-        format.html { redirect_to keyword_url(@keyword), notice: "Keyword was successfully created." }
+        format.html { redirect_to keyword_url(@keyword), notice: 'Keyword was successfully created.' }
         format.json { render :show, status: :created }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class KeywordsController < ApplicationController
   def update
     respond_to do |format|
       if @keyword.update(keyword_params)
-        format.html { redirect_to keyword_url(@keyword), notice: "Keyword was successfully updated." }
+        format.html { redirect_to keyword_url(@keyword), notice: 'Keyword was successfully updated.' }
         format.json { render :show, status: :ok }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,26 +53,23 @@ class KeywordsController < ApplicationController
     @keyword.destroy!
 
     respond_to do |format|
-      format.html { redirect_to keywords_url, notice: "Keyword was successfully destroyed." }
+      format.html { redirect_to keywords_url, notice: 'Keyword was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  # Use the google_search_results gem to get SERP data
-  def fetch_serp
-    @serp_results = @keyword.fetch_serp_results
-    # Do something with @serp_results if needed
-  end
-
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_keyword
-      @keyword = Keyword.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_keyword
+    @keyword = Keyword.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Keyword not found."
+    redirect_to keywords_url
+  end
 
-    # Only allow a list of trusted parameters through.
-    def keyword_params
-      params.require(:keyword).permit(:name, :target_url, :search_engine)
-    end
+  # Only allow a list of trusted parameters through.
+  def keyword_params
+    params.require(:keyword).permit(:name, :target_url, :search_engine)
+  end
 end

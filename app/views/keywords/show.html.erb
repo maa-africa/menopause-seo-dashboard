@@ -1,6 +1,9 @@
 <h1>Keyword: <%= @keyword.name %></h1>
 <h2>Search Engine Results</h2>
 
+<%# Debugging output to inspect @serp_results %>
+<pre><%= @serp_results.inspect %></pre>
+
 <% if @serp_results.present? %>
   <ul>
     <% @serp_results.each do |result| %>
