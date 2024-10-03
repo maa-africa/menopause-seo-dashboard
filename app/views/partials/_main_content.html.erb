@@ -1,21 +1,48 @@
 <main class="main-content">
   <!-- Nav -->
-  <div class="nav">
-    <h1>My SEO Dashboard</h1>
-  </div>
+ 
+    <header class="top-nav">
+      <h1 class="site-title">My SEO Dashboard</h1>
+      <div class="nav-container">
+        <nav>
+          <ul class="main-menu">
+            <li><%= link_to "Home", dashboard_path %></li>
+            <li><%= link_to "Dashboard", dashboard_path %></li>
+            <li><%= link_to "Keywords", keywords_path %></li>
+            <li><%= link_to "Searches", searches_path %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle">More</a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Alert Settings", alert_settings_path %></li>
+                <li><%= link_to "Settings", settings_path %></li>
+              </ul>
+            </li>
+            <% if user_signed_in? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Account</a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Profile", users_profile_path %></li>
+                  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+              <li><%= link_to "Sign Up", new_user_registration_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
   <%= yield %>
   <!-- Footer -->
   <div class="footer">
-    <div class="footer-text-container">
-      <div class="row">
-        <div class="col-12 col-sm-6 text-sm-start text-center">
+        <div>
           &copy; <a href="#">My SEO Dashboard</a>, All Right Reserved.
         </div>
-        <div class="col-12 col-sm-6 text-sm-end text-center">
+        <div>
           <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
           Designed By <a href="">Mama Tech</a>
         </div>
-      </div>
-    </div>
   </div>
 </main>

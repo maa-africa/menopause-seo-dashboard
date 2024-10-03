@@ -1,0 +1,19 @@
+<h1>Keyword Search Results</h1>
+<%= link_to "View Dashboard", dashboard_path %>
+<%= form_with url: searches_path, method: :get, local: true do |f| %>
+  <%= f.label :query, "Enter keyword:" %>
+  <%= f.text_field :query, value: @query %>
+  <%= f.submit "Search" %>
+<% end %>
+
+<% if @results %>
+  <h2>Results for "<%= @query %>"</h2>
+  <ul>
+    <% @results.each do |result| %>
+      <li>
+        <h3><%= link_to result[:title], result[:link] %></h3>
+        <p><%= result[:snippet] %></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
