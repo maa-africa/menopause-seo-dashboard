@@ -1,6 +1,24 @@
 <main class="main-content">
   <!-- Nav -->
- 
+  <nav class="navbar custom-navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><%= t 'navbar.title', default: 'My SEO Dashboard' %></a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <li><%= link_to t('navbar.home', default: "Home"), dashboard_path, class: "nav-link" %></li>
+            <li><%= link_to t('navbar.dashboard', default: "Dashboard"), dashboard_path, class: "nav-link" %></li>
+            <li><%= link_to t('navbar.keywords', default: "Keywords"), keywords_path, class: "nav-link" %></li>
+            <li><%= link_to t('navbar.searches', default: "Searches"), searches_path, class: "nav-link" %></li>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
     <header class="top-nav">
       <h1 class="site-title">My SEO Dashboard</h1>
       <div class="nav-container">

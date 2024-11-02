@@ -8,3 +8,4 @@ Switch to main branch: git checkout main.
 Merge or rebase staging into main.
 Push the updated main branch to GitHub: git push origin main.
 Deploy the main branch to production.
+

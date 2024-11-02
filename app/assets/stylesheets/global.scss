@@ -37,7 +37,10 @@ body {
 /* Top navigation styles */
 .top-nav {
   background-color: #f0f0f0;
-  padding: 10px 0;
+  padding: 20px 0;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .nav-container {
@@ -170,14 +173,7 @@ h2 {
   border-radius: 5px;
 }
 
-//Navbar
-.nav {
-  padding-top: 1rem;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  padding: 20px;
-  margin-bottom: 1rem;
-}
+
 //Footer
 .footer {
   padding-top: 1rem;
@@ -195,7 +191,28 @@ h2 {
   justify-content: center;
 }
 
-// Page-specific styles
-.homepage {
-  // Styles specific to the homepage
+// Dashboard Page
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.chart-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
 }
