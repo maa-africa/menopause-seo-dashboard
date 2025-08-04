@@ -14,11 +14,18 @@
     javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="d-flex">
     <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-    <% end %> <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
+    <div class="alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-3" style="z-index: 1050;">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <% end %> 
+    <% if alert %>
+    <div class="alert alert-danger alert-dismissible fade show position-fixed top-0 end-0 m-3" style="z-index: 1050;">
+      <%= alert %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
     <% end %> 
     <%= render 'partials/sidebar' %>
     <%= render 'partials/main_content' %>
