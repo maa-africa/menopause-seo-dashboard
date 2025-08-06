@@ -1,34 +1,42 @@
-<%= form_with(model: keyword) do |form| %>
+<%= form_with(model: keyword, local: true, class: "row g-3") do |form| %>
   <% if keyword.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(keyword.errors.count, "error") %> prohibited this keyword from being saved:</h2>
-
-      <ul>
-        <% keyword.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-      
+    <div class="col-12">
+      <div class="alert alert-danger">
+        <h5><%= pluralize(keyword.errors.count, "error") %> prohibited this keyword from being saved:</h5>
+        <ul class="mb-0">
+          <% keyword.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="col-md-6">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "e.g., menopause symptoms" %>
   </div>
 
-  <div>
-    <%= form.label :target_url, style: "display: block" %>
-    <%= form.text_field :target_url %>
+  <div class="col-md-6">
+    <%= form.label :target_url, "Target URL", class: "form-label" %>
+    <%= form.url_field :target_url, class: "form-control", placeholder: "https://example.com/your-page" %>
   </div>
 
-  <div>
-    <%= form.label :search_engine, style: "display: block" %>
-    <%= form.select :search_engine, options_for_select([["Google", "google"], ["Bing", "bing"], ["Yahoo", "yahoo"]]), prompt: "Select Search Engine" %>
+  <div class="col-md-6">
+    <%= form.label :search_engine, class: "form-label" %>
+    <%= form.select :search_engine, 
+        options_for_select([["Google", "Google"], ["Bing", "Bing"], ["Yahoo", "Yahoo"]], keyword.search_engine), 
+        { prompt: "Select Search Engine" }, 
+        { class: "form-select" } %>
   </div>
-  
 
-  <div>
-    <%= form.submit %>
+  <div class="col-md-6">
+    <%= form.label :keyword, "Additional Keywords", class: "form-label" %>
+    <%= form.text_field :keyword, class: "form-control", placeholder: "Additional keyword variations" %>
+  </div>
+
+  <div class="col-12">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", keywords_path, class: "btn btn-secondary ms-2" %>
   </div>
 <% end %>

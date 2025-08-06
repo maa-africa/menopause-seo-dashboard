@@ -1,11 +1,38 @@
-<% content_for :title, "New keyword" %>
+<% content_for :title, "New SEO Keyword" %>
 
-<h1>New keyword</h1>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="mb-0">Add New SEO Keyword</h4>
+      </div>
+      <div class="card-body">
+        <%= render "form", keyword: @keyword %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Tips</h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <strong>Keyword Name:</strong> Use descriptive names like "menopause symptoms"
+          </li>
+          <li class="mb-2">
+            <strong>Target URL:</strong> The page you want to rank for this keyword
+          </li>
+          <li class="mb-2">
+            <strong>Search Engine:</strong> Choose which search engine to track
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= render "form", keyword: @keyword %>
-
-<br>
-
-<div>
-  <%= link_to "Back to keywords", keywords_path %>
+<div class="mt-3">
+  <%= link_to "← Back to keywords", keywords_path, class: "btn btn-outline-secondary" %>
 </div>

@@ -1,2 +1,122 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<% content_for :title, "SEO Dashboard" %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="h2 mb-4">Menopause SEO Dashboard</h1>
+      
+      <!-- Summary Cards -->
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Total Keywords</h5>
+              <p class="card-text display-6"><%= @total_keywords %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Search Engines</h5>
+              <p class="card-text display-6"><%= @search_engines.keys.count %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Tracking Status</h5>
+              <p class="card-text display-6 text-success">Active</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keywords Table -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">SEO Keywords</h5>
+              <%= link_to "Add New Keyword", new_keyword_path, class: "btn btn-primary btn-sm" %>
+            </div>
+            <div class="card-body">
+              <% if @keywords.any? %>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Keyword</th>
+                        <th>Target URL</th>
+                        <th>Search Engine</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @keywords.each do |keyword| %>
+                        <tr>
+                          <td>
+                            <strong><%= keyword.name || keyword.keyword %></strong>
+                          </td>
+                          <td>
+                            <% if keyword.target_url.present? %>
+                              <a href="<%= keyword.target_url %>" target="_blank" class="text-decoration-none">
+                                <%= truncate(keyword.target_url, length: 50) %>
+                                <i class="bi bi-box-arrow-up-right"></i>
+                              </a>
+                            <% else %>
+                              <span class="text-muted">No URL</span>
+                            <% end %>
+                          </td>
+                          <td>
+                            <span class="badge bg-secondary"><%= keyword.search_engine || 'Google' %></span>
+                          </td>
+                          <td>
+                            <%= keyword.created_at.strftime("%b %d, %Y") if keyword.created_at %>
+                          </td>
+                          <td>
+                            <%= link_to "View", keyword, class: "btn btn-outline-primary btn-sm" %>
+                            <%= link_to "Edit", edit_keyword_path(keyword), class: "btn btn-outline-secondary btn-sm" %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              <% else %>
+                <div class="text-center py-5">
+                  <h4 class="text-muted">No SEO Keywords Yet</h4>
+                  <p class="text-muted">Start tracking your menopause-related keywords to improve your SEO performance.</p>
+                  <%= link_to "Add Your First Keyword", new_keyword_path, class: "btn btn-primary" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Engine Distribution -->
+      <% if @search_engines.any? %>
+        <div class="row mt-4">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">Search Engine Distribution</h5>
+              </div>
+              <div class="card-body">
+                <% @search_engines.each do |engine, count| %>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span><%= engine || 'Google' %></span>
+                    <span class="badge bg-primary"><%= count %> keyword<%= 's' if count != 1 %></span>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

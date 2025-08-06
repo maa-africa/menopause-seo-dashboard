@@ -1,3 +1,39 @@
-<aside class="sidebar">
-    <h1>Sidebar</h1>
+<aside class="sidebar bg-dark text-white d-flex flex-column" style="width: 250px; min-height: 100vh;">
+    <div class="p-3">
+        <h4 class="text-center mb-4">SEO Dashboard</h4>
+        <nav class="nav flex-column">
+            <%= link_to dashboard_path, class: "nav-link text-white #{'active' if current_page?(dashboard_path)}" do %>
+                <i class="bi bi-speedometer2 me-2"></i>Dashboard
+            <% end %>
+            <%= link_to keywords_path, class: "nav-link text-white #{'active' if current_page?(keywords_path)}" do %>
+                <i class="bi bi-search me-2"></i>Keywords
+            <% end %>
+            <%= link_to alert_settings_path, class: "nav-link text-white #{'active' if current_page?(alert_settings_path)}" do %>
+                <i class="bi bi-bell me-2"></i>Alerts
+            <% end %>
+            <%= link_to settings_path, class: "nav-link text-white #{'active' if current_page?(settings_path)}" do %>
+                <i class="bi bi-gear me-2"></i>Settings
+            <% end %>
+        </nav>
+    </div>
+    
+    <% if user_signed_in? %>
+        <div class="mt-auto p-3 border-top">
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle me-2"></i>
+                    <strong><%= current_user.name || current_user.email %></strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <li><%= link_to "Profile", users_profile_path, class: "dropdown-item" %></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+                </ul>
+            </div>
+        </div>
+    <% else %>
+        <div class="mt-auto p-3 border-top">
+            <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-light w-100" %>
+        </div>
+    <% end %>
 </aside>
