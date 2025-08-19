@@ -200,7 +200,7 @@ GEM
     parser (3.3.5.0)
       ast (~> 2.4.1)
       racc
-    pg (1.5.8)
+    pg (1.5.9)
     popper_js (2.11.8)
     psych (5.1.2)
       stringio
@@ -379,7 +379,7 @@ DEPENDENCIES
   google_search_results (~> 2.0)
   importmap-rails
   jbuilder
-  pg (~> 1.2)
+  pg (~> 1.5)
   puma (>= 5.0)
   rails (~> 7.2.1)
   rubocop-rails-omakase
